@@ -15,7 +15,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private StarterAssetsInputs _starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
-   
+    public Vector3 aimDirection;
 
     private void Awake()    
     {
@@ -32,6 +32,9 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             debugTransfrom.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
+            Vector3 worldAimTarget = mouseWorldPosition;
+            worldAimTarget.y = transform.position.y;
+            aimDirection = (worldAimTarget - transform.position).normalized;
         }
 
 
@@ -41,9 +44,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetSensitivity(aimingSensitivity);
             _thirdPersonController.SetRotateOnMove(false);
 
-            Vector3 worldAimTarget = mouseWorldPosition;
-            worldAimTarget.y = transform.position.y;
-            Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
         }

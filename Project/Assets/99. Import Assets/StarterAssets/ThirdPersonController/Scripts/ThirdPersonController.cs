@@ -160,7 +160,6 @@ namespace StarterAssets
 
         private void Update()
         {
-            Debug.Log("닷지 허가 =  " + (_input.dodge && !_isDodging));
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
