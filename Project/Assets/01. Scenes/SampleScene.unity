@@ -663,7 +663,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
@@ -830,7 +830,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1346902225
 GameObject:
@@ -1221,7 +1221,7 @@ PrefabInstance:
     - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
       propertyPath: m_Name
-      value: PlayerFollowCamera (1)
+      value: PlayerAimCamera
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
@@ -1231,7 +1231,7 @@ PrefabInstance:
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
@@ -1435,7 +1435,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743664745}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1916120832
+--- !u!1001 &1776150361
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1492,11 +1492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d3425a6c7317e048be11c2ff72db69e, type: 3}
---- !u!4 &1916120833 stripped
+--- !u!4 &1776150362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400108, guid: 7d3425a6c7317e048be11c2ff72db69e,
     type: 3}
-  m_PrefabInstance: {fileID: 1916120832}
+  m_PrefabInstance: {fileID: 1776150361}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1940466797
 GameObject:
@@ -1533,7 +1533,7 @@ Transform:
   - {fileID: 207899610}
   - {fileID: 1743664746}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1963275268
 GameObject:
@@ -1769,6 +1769,7 @@ MonoBehaviour:
   sprint: 0
   aiming: 0
   attack: 0
+  dodge: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -2646,7 +2647,7 @@ Transform:
   - {fileID: 8002264680858781087}
   - {fileID: 272993188100161492}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3964097222423751863
 Transform:
@@ -2960,6 +2961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 2
+  DodgeSpeed: 4.5
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -3905,7 +3907,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1916120833}
+  - {fileID: 1776150362}
   m_Father: {fileID: 3893294199520526669}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

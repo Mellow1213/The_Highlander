@@ -17,6 +17,7 @@ namespace StarterAssets
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
+        public float DodgeSpeed = 8f;
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
@@ -27,7 +28,7 @@ namespace StarterAssets
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
-        public float Sensitivity = 1f; 
+        public float Sensitivity = 1f;
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
@@ -138,7 +139,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -264,16 +265,27 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 // rotate to face input direction relative to camera position
-                if(_rotateOnMove)
+                if (_rotateOnMove)
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
+            if (_input.dodge)
+                _speed = 15f;
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
             // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            if (_input.dodge && Grounded)
+            {
+                _controller.Move(transform.forward.normalized * (DodgeSpeed * Time.deltaTime) +
+                                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+                _animator.SetTrigger("Dodge");
+                _input.dodge = false;
+            }
+            else
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             // update animator if using character
             if (_hasAnimator)
