@@ -376,6 +376,7 @@ namespace StarterAssets
         public void SetSensitivity(float sensitivity) { Sensitivity = sensitivity; }
         public void SetRotateOnMove(bool rotateOnMove) { _rotateOnMove = rotateOnMove; }
 
+        //receiver에서 받는 모양. Walk_N Run_N 애니메이션에서 설정 확인해보자
         private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
