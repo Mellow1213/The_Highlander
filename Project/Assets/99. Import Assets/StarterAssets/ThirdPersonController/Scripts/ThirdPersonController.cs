@@ -109,6 +109,8 @@ namespace StarterAssets
         private GameObject _mainCamera;
 
         private bool _rotateOnMove = true;
+        private bool _isDodging = false;
+        private float dodgeTime = 0f;
 
         private const float _threshold = 0.01f;
 
@@ -158,6 +160,7 @@ namespace StarterAssets
 
         private void Update()
         {
+            Debug.Log("닷지 허가 =  " + (_input.dodge && !_isDodging));
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
@@ -226,6 +229,33 @@ namespace StarterAssets
             // if there is no input, set the target speed to 0
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
+            if (_input.dodge && !_isDodging)
+            {
+                _animator.SetBool("isDodging", true);
+                _input.dodge = false;
+                _isDodging = true;
+            }
+            if (_input.dodge)
+                _input.dodge = false;
+
+            if (_isDodging)
+            {
+                dodgeTime += Time.deltaTime;
+                if (dodgeTime >= 1.5f)
+                {
+                    _isDodging = false;
+                    dodgeTime = 0f;
+                    targetSpeed = 0f;
+                }
+                else if (dodgeTime > 0.5f)
+                {
+                    _animator.SetBool("isDodging", false);
+                }
+                else
+                {
+                    targetSpeed = DodgeSpeed;
+                }
+            }
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
@@ -269,23 +299,12 @@ namespace StarterAssets
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
-            if (_input.dodge)
-                _speed = 15f;
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
             // move the player
-            if (_input.dodge && Grounded)
-            {
-                _controller.Move(transform.forward.normalized * (DodgeSpeed * Time.deltaTime) +
-                                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
-                _animator.SetTrigger("Dodge");
-                _input.dodge = false;
-            }
-            else
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             // update animator if using character
             if (_hasAnimator)
@@ -294,6 +313,7 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
+
 
         private void JumpAndGravity()
         {
