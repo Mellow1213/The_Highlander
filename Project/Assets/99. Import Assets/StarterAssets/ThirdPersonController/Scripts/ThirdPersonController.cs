@@ -135,7 +135,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -159,6 +159,21 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Aiming();
+        }
+
+        private void Aiming()
+        {
+            if (_input.aiming && Grounded && !_input.sprint)
+            {
+                _animator.SetBool("Aiming", _input.aiming);
+                _animator.SetBool("Fire", _input.attack);
+            }
+            else
+            {
+                _animator.SetBool("Aiming", false);
+                _animator.SetBool("Fire", false);
+            }
         }
 
         private void LateUpdate()
