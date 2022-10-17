@@ -22,30 +22,39 @@ public class EnemyWaveSystem : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        Debug.Log("문닫기");
-        Debug.Log("웨이브 레벨 " + waveLevel + " 시작");
+        // 문 닫기
+
         while (waveCount < waves[waveLevel].MaxWaveCount)
         {
             waveCount++;
-            Debug.Log("웨이브 [" + waveCount + "] 진행");
-            for (int i = 0; i < waves[0].MaxSpawnCount; i++)
-                Debug.Log("적 스폰");
+            for (int i = 0; i < waves[waveLevel].MaxSpawnCount; i++)
+                Instantiate(waves[waveLevel].Enemies[0], SetSpawnPoint(), Quaternion.identity);
             yield return new WaitForSeconds(nextWaveWaitingTime);
         }
-        yield return new WaitWhile(() => false);
-        Debug.Log("문열기");
+        yield return new WaitWhile(() => false); // 몬스터 다 죽었다는 조건 달기
+
+        // 문 열기
         waveCount = 0;
         waveLevel++;
-        Debug.Log("다음 웨이브 레벨은 " + waveLevel);
     }
 
+    Vector3 SetSpawnPoint()
+    {
+        Vector3 pos = new Vector3(Random.Range(-25, 15), -3.4f ,Random.Range(15, 56));
+        if (pos.x < 3 && pos.x > -10 && pos.z < 30 && pos.z > 40)
+            return SetSpawnPoint();
+        else
+            return pos;
+    }
+
+    StarterAssetsInputs _input; // 실행용 임시 Input.
     private void Start()
     {
-        StartCoroutine(SpawnWave());
+        _input = GameObject.Find("PlayerArmature").GetComponent<StarterAssetsInputs>();
     }
     private void Update()
     {
-        if (GameObject.Find("PlayerArmature").GetComponent<StarterAssetsInputs>().dodge)
+        if (_input.dodge)
             StartCoroutine(SpawnWave());
     }
 }
