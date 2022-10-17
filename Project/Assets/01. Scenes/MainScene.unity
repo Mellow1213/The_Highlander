@@ -3193,10 +3193,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SK_CyberpunkSamurai_MergedA
       objectReference: {fileID: 0}
+    - target: {fileID: 585539606477672097, guid: 6815220985d28e94b98ad2b7bd6b53d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7301566903738610931, guid: 6815220985d28e94b98ad2b7bd6b53d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7301566903738610931, guid: 6815220985d28e94b98ad2b7bd6b53d0,
         type: 3}
@@ -4671,7 +4676,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1081224690
 MonoBehaviour:
@@ -9776,7 +9781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 2
-  DodgeSpeed: 20
+  DodgeSpeed: 10
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -10975,7 +10980,7 @@ PrefabInstance:
     - target: {fileID: 8901109624705361687, guid: 65f7cbf1783fb53418b172f88dcd0205,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8901109624705361687, guid: 65f7cbf1783fb53418b172f88dcd0205,
         type: 3}

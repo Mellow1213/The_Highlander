@@ -7,6 +7,7 @@ public class PlayerAttackSystem : MonoBehaviour
 {
     private ThirdPersonShooterController _thirdPersonShooterController;
     private StarterAssetsInputs _input;
+    private Animator _animator;
 
     public GameObject Gun;
     public GameObject Sword;
@@ -14,6 +15,7 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         _thirdPersonShooterController = GetComponent<ThirdPersonShooterController>();
         _input = GetComponent<StarterAssetsInputs>();
+        _animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -41,11 +43,13 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if(_input.aiming)
         {
+            _animator.SetBool("isAiming", _input.aiming);
             Gun.SetActive(true);
             Sword.SetActive(false);
         }
-        else 
+        else
         {
+            _animator.SetBool("isAiming", false);
             Gun.SetActive(false);
             Sword.SetActive(true);
         }

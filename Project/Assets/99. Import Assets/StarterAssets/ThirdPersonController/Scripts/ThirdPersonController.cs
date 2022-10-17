@@ -244,7 +244,7 @@ namespace StarterAssets
                 {
                     _isDodging = false;
                     dodgeTime = 0f;
-                    targetSpeed = 0f;
+                    //targetSpeed = 0f;
                 }
                 else if (dodgeTime > 0.5f)
                 {

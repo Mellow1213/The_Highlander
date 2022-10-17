@@ -54,7 +54,7 @@ public class EnemyWaveSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (_input.dodge)
+        if (_input.item01)
             StartCoroutine(SpawnWave());
     }
 }
