@@ -28,6 +28,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+
+        Transform hitTransform = null;
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
         {
             debugTransfrom.position = raycastHit.point;
@@ -35,6 +37,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             Vector3 worldAimTarget = mouseWorldPosition;
             worldAimTarget.y = transform.position.y;
             aimDirection = (worldAimTarget - transform.position).normalized;
+            hitTransform = raycastHit.transform;
         }
 
 
@@ -52,6 +55,17 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetRotateOnMove(true);
             _aimVirtualCamera.gameObject.SetActive(false);
             _thirdPersonController.SetSensitivity(normalSensitivity);
+        }
+
+        if(_starterAssetsInputs.attack && _starterAssetsInputs.aiming)
+        {
+            if(hitTransform != null)
+            {
+                if (hitTransform.CompareTag("Enemy"))
+                    hitTransform.GetComponent<EnemyHit>().Damaged(1);
+                else
+                    Debug.Log("¹Ù´Ú ¸íÁß!");
+            }
         }
     }
 }

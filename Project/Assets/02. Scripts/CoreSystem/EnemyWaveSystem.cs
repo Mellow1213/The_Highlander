@@ -37,7 +37,7 @@ public class EnemyWaveSystem : MonoBehaviour
         waveCount = 0;
         waveLevel++;
     }
-
+    
     Vector3 SetSpawnPoint()
     {
         Vector3 pos = new Vector3(Random.Range(-25, 15), -3.4f ,Random.Range(15, 56));
@@ -55,6 +55,9 @@ public class EnemyWaveSystem : MonoBehaviour
     private void Update()
     {
         if (_input.item01)
+        {
             StartCoroutine(SpawnWave());
+            _input.item01 = false;
+        }
     }
 }
