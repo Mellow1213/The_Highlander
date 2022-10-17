@@ -6,18 +6,14 @@ using StarterAssets;
 public class PlayerAttackSystem : MonoBehaviour
 {
     private ThirdPersonShooterController _thirdPersonShooterController;
-    private ThirdPersonController _thirdPersonController;
     private StarterAssetsInputs _input;
-    private CharacterController _controller;
 
     public GameObject Gun;
     public GameObject Sword;
     private void Start()
     {
         _thirdPersonShooterController = GetComponent<ThirdPersonShooterController>();
-        _thirdPersonController = GetComponent<ThirdPersonController>();
         _input = GetComponent<StarterAssetsInputs>();
-        _controller = GetComponent<CharacterController>();
     }
     private void Update()
     {
