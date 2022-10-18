@@ -31,12 +31,20 @@ public class EnemyWaveSystem : MonoBehaviour
                 Instantiate(waves[waveLevel].Enemies[0], SetSpawnPoint(), Quaternion.identity);
             yield return new WaitForSeconds(nextWaveWaitingTime);
         }
-        yield return new WaitWhile(() => false); // 몬스터 다 죽었다는 조건 달기
+
+        while (true)
+        {
+            if (GameObject.FindGameObjectWithTag("Enemy") is null)
+                break;
+            yield return new WaitForSeconds(1f);
+        }
 
         // 문 열기
         waveCount = 0;
         waveLevel++;
     }
+
+
     
     Vector3 SetSpawnPoint()
     {

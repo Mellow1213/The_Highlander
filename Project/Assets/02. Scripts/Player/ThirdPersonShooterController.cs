@@ -62,7 +62,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             if(hitTransform != null)
             {
                 if (hitTransform.CompareTag("Enemy"))
-                    hitTransform.GetComponent<EnemyHit>().Damaged(1);
+                    hitTransform.GetComponent<EnemyHit>().Damaged(3);
                 else
                     Debug.Log("¹Ù´Ú ¸íÁß!");
             }
