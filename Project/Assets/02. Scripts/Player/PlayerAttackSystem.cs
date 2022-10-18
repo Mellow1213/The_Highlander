@@ -43,6 +43,7 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if(_input.aiming)
         {
+
             _animator.SetBool("isAiming", _input.aiming);
             Gun.SetActive(true);
             Sword.SetActive(false);
@@ -54,5 +55,4 @@ public class PlayerAttackSystem : MonoBehaviour
             Sword.SetActive(true);
         }
     }
-
 }

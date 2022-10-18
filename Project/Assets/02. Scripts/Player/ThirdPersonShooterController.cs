@@ -13,6 +13,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] private Transform debugTransfrom;
 
+    public GameObject bulletPrefab;
+
     private StarterAssetsInputs _starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
     public Vector3 aimDirection;
@@ -61,8 +63,11 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             if(hitTransform != null)
             {
+                Instantiate(bulletPrefab, raycastHit.point, Quaternion.identity);
                 if (hitTransform.CompareTag("Enemy"))
-                    hitTransform.GetComponent<EnemyHit>().Damaged(3);
+                {
+                    hitTransform.GetComponent<EnemyHit>().Damaged(1.5f);
+                }
                 else
                     Debug.Log("¹Ù´Ú ¸íÁß!");
             }
