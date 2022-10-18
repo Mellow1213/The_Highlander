@@ -696,6 +696,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4774342892620840573, guid: d324de115c4dff845bee7b7f166883c4,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774342892620840573, guid: d324de115c4dff845bee7b7f166883c4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.007433082
       objectReference: {fileID: 0}
@@ -3798,6 +3803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4774342892620840573, guid: d324de115c4dff845bee7b7f166883c4,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774342892620840573, guid: d324de115c4dff845bee7b7f166883c4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.007433082
       objectReference: {fileID: 0}
@@ -4065,6 +4075,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall BayDoor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774342892620840573, guid: d324de115c4dff845bee7b7f166883c4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4774342892620840573, guid: d324de115c4dff845bee7b7f166883c4,
         type: 3}
@@ -5356,15 +5371,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279828753}
-  m_LocalRotation: {x: -0.9309411, y: 0.20381187, z: 0.26347798, w: -0.14962853}
-  m_LocalPosition: {x: 0.08906991, y: -0.07342685, z: -0.034646492}
+  m_LocalRotation: {x: -0.9608811, y: 0.26232946, z: -0.058126133, w: -0.06717283}
+  m_LocalPosition: {x: 0.1089, y: -0.0413, z: -0.0383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1980607816}
   m_Father: {fileID: 1033443114}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 189.685, z: -115.198}
+  m_LocalEulerAnglesHint: {x: 9.183, y: 175.558, z: -149.817}
 --- !u!4 &1326172240 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1430841697005043554, guid: d324de115c4dff845bee7b7f166883c4,
@@ -8474,6 +8489,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall BayDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774342892620840573, guid: d324de115c4dff845bee7b7f166883c4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6935417351677981081, guid: d324de115c4dff845bee7b7f166883c4,
         type: 3}
