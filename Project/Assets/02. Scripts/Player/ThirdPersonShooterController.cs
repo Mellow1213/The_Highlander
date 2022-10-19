@@ -20,10 +20,18 @@ public class ThirdPersonShooterController : MonoBehaviour
     public Vector3 aimDirection;
     public Vector3 mouseWorldPosition = Vector3.zero;
 
-    private void Awake()    
+    private LineRenderer _lineRenderer;    //ÃÑ¾Ë ±ËÀû »ý¼º ¶óÀÎ ·»´õ·¯
+
+    // ÃÑ ¹ß»ç °£°Ý(µô·¹ÀÌ) °ü·Ã º¯¼ö
+    public float fireDelay = 0.3f;
+    [SerializeField] private float fireTimer = 0f;
+
+    private void Awake()
     {
         _starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         _thirdPersonController = GetComponent<ThirdPersonController>();
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.enabled = false;
     }
     private void Update()
     {
@@ -59,9 +67,10 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetSensitivity(normalSensitivity);
         }
 
-        if(_starterAssetsInputs.attack && _starterAssetsInputs.aiming)
+        if (_starterAssetsInputs.attack && _starterAssetsInputs.aiming && fireTimer >= fireDelay)
         {
-            if(hitTransform != null)
+            StartCoroutine(CreateShotLine());
+            if (hitTransform != null)
             {
                 Instantiate(bulletPrefab, raycastHit.point, Quaternion.identity);
                 if (hitTransform.CompareTag("Enemy"))
@@ -72,5 +81,14 @@ public class ThirdPersonShooterController : MonoBehaviour
                     Debug.Log("¹Ù´Ú ¸íÁß!");
             }
         }
+        if (fireTimer < fireDelay)
+            fireTimer += Time.deltaTime;
+    }
+    IEnumerator CreateShotLine()
+    {
+        _lineRenderer.enabled = true;
+        fireTimer = 0f;
+        yield return new WaitForSeconds(0.03f);
+        _lineRenderer.enabled = false;
     }
 }

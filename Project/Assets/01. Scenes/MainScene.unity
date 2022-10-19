@@ -10658,6 +10658,8 @@ MonoBehaviour:
     type: 3}
   aimDirection: {x: 0, y: 0, z: 0}
   mouseWorldPosition: {x: 0, y: 0, z: 0}
+  fireDelay: 0.1
+  fireTimer: 0
 --- !u!114 &6982812147986160441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10733,8 +10735,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.28590053
-        value: 0.06349376
+        time: 0.15369838
+        value: 0.0009937584
         inSlope: 1.2028614
         outSlope: 1.2028614
         tangentMode: 0
@@ -10742,8 +10744,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.452048
-        value: 0.12698416
+        time: 0.5028903
+        value: 0.087921664
         inSlope: -0.0000001812974
         outSlope: -0.0000001812974
         tangentMode: 0
@@ -10751,8 +10753,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.8762699
       - serializedVersion: 3
-        time: 0.6533481
-        value: 0.08341961
+        time: 0.8058902
+        value: 0.3984375
         inSlope: -1.0527896
         outSlope: -1.0527896
         tangentMode: 0
@@ -10762,19 +10764,19 @@ LineRenderer:
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.23046872
+        outSlope: -0.23046872
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.9036994
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0.10215159, b: 0, a: 0.5882353}
+      key1: {r: 1, g: 0, b: 0, a: 0.27450982}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
