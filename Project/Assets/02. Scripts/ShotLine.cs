@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShotLine : MonoBehaviour
 {
     public GameObject muzzle;
-    public GameObject[] pos;
     LineRenderer _lineRenderer;
     ThirdPersonShooterController _thirdPersonShooterController;
     // Start is called before the first frame update

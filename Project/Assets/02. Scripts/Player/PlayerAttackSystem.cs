@@ -10,6 +10,7 @@ public class PlayerAttackSystem : MonoBehaviour
     private Animator _animator;
 
     public GameObject Gun;
+    public GameObject GunLookPos;
     public GameObject Sword;
 
     private void Start()

@@ -20,14 +20,19 @@ public class ThirdPersonShooterController : MonoBehaviour
     public Vector3 aimDirection;
     public Vector3 mouseWorldPosition = Vector3.zero;
 
+    private Animator _animator;
     private LineRenderer _lineRenderer;    //ÃÑ¾Ë ±ËÀû »ý¼º ¶óÀÎ ·»´õ·¯
 
     // ÃÑ ¹ß»ç °£°Ý(µô·¹ÀÌ) °ü·Ã º¯¼ö
     public float fireDelay = 0.3f;
     [SerializeField] private float fireTimer = 0f;
 
+    Transform t;
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
+        if (_animator)
+            t = _animator.GetBoneTransform(HumanBodyBones.Spine);
         _starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         _thirdPersonController = GetComponent<ThirdPersonController>();
         _lineRenderer = GetComponent<LineRenderer>();
@@ -57,7 +62,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetSensitivity(aimingSensitivity);
             _thirdPersonController.SetRotateOnMove(false);
 
-
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
         }
         else
@@ -83,6 +87,17 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
         if (fireTimer < fireDelay)
             fireTimer += Time.deltaTime;
+    }
+    public Vector3 chestOffset;
+    public GameObject firepos;
+
+    private void LateUpdate()
+    {
+        if (_starterAssetsInputs.aiming)
+        {
+            t.LookAt(debugTransfrom);
+            t.rotation = t.rotation * Quaternion.Euler(chestOffset);
+        }
     }
     IEnumerator CreateShotLine()
     {
