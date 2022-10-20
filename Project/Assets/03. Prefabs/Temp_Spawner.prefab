@@ -97,8 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b54d37cab19604a8f9bcb618f34081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs: {fileID: 8477262467673818200, guid: 65f7cbf1783fb53418b172f88dcd0205,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 8477262467673818200, guid: 65f7cbf1783fb53418b172f88dcd0205, type: 3}
+  - {fileID: 7476601308206563492, guid: caa2faf08e8ba5841a9e5cfabe6bf2fc, type: 3}
+  spawnEnemy: 3
 --- !u!65 &4805871062509698710
 BoxCollider:
   m_ObjectHideFlags: 0

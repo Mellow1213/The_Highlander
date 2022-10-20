@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefabs;
+    public GameObject[] enemyPrefabs;
+    public int spawnEnemy;
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(enemyPrefabs, transform.position + SetPos(), Quaternion.identity);
-        Instantiate(enemyPrefabs, transform.position + SetPos(), Quaternion.identity);
-        Instantiate(enemyPrefabs, transform.position+SetPos(), Quaternion.identity);
+        for(int i = 0; i<spawnEnemy; i++)
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], transform.position + SetPos(), Quaternion.identity);
         Destroy(transform.gameObject, 3.0f);
     }
 

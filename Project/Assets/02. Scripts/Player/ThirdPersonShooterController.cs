@@ -14,7 +14,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Transform debugTransfrom;
 
     public GameObject bulletPrefab;
-
     private StarterAssetsInputs _starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
     public Vector3 aimDirection;

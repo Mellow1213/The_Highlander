@@ -15,7 +15,6 @@ public class EnemyWaveSystem : MonoBehaviour
 
     public Wave[] waves;
 
-
     [SerializeField] int waveLevel = 1;
     [SerializeField] int waveCount = 0;
     [SerializeField] public float nextWaveWaitingTime;
@@ -28,7 +27,7 @@ public class EnemyWaveSystem : MonoBehaviour
         {
             waveCount++;
             for (int i = 0; i < waves[waveLevel].MaxSpawnCount; i++)
-                Instantiate(waves[waveLevel].Enemies[0], SetSpawnPoint(), Quaternion.identity);
+                Instantiate(waves[waveLevel].Enemies[Random.Range(0, waves[waveLevel].Enemies.Length)], SetSpawnPoint(), Quaternion.identity);
             yield return new WaitForSeconds(nextWaveWaitingTime);
         }
 

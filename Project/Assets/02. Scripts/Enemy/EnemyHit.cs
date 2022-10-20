@@ -6,6 +6,7 @@ public class EnemyHit : MonoBehaviour
 {
     public float HP;
     [SerializeField] private float CurrentHP;
+    public int gold;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class EnemyHit : MonoBehaviour
         {
             //»ç¸Á ¸ð¼Ç
             Destroy(gameObject);
+            GameManager.Instance.gold += 30;
         }
     }
 }
