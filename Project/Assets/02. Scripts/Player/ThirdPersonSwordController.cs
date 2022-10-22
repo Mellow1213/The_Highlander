@@ -25,7 +25,6 @@ public class ThirdPersonSwordController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
         if (noOfClick == 0)
         {
             swordCollider.enabled = false;

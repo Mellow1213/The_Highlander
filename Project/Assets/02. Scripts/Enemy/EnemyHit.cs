@@ -43,7 +43,7 @@ public class EnemyHit : MonoBehaviour
                     _navMeshAgent.speed = 0f;
             }
             //»ç¸Á ¸ð¼Ç
-            if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.1 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+            if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.1 && _animator.GetCurrentAnimatorStateInfo(0).IsTag("Death"))
             {
                 Destroy(gameObject);
                 GameManager.Instance.gold += 30;
