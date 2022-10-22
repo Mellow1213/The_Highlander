@@ -14,6 +14,7 @@ public class ShotLine : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
     }
 
+    Vector3 middle;
     // Update is called once per frame
     void Update()
     {
@@ -22,8 +23,9 @@ public class ShotLine : MonoBehaviour
         linePos[2] = _thirdPersonShooterController.aimDirection;
         linePos[1] = (linePos[0] + linePos[2]) * 0.5f;
         */
+        middle = 0.5f * (muzzle.transform.position + _thirdPersonShooterController.mouseWorldPosition);
         _lineRenderer.SetPosition(0, muzzle.transform.position);
         _lineRenderer.SetPosition(2, _thirdPersonShooterController.mouseWorldPosition);
-        _lineRenderer.SetPosition(1, 0.5f * (muzzle.transform.position + _thirdPersonShooterController.mouseWorldPosition));
+        _lineRenderer.SetPosition(1, middle);
     }
 }
