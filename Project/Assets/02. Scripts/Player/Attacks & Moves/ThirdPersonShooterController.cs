@@ -57,7 +57,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             hitTransform = raycastHit.transform;
         }
 
-        Debug.Log("AimAllowed = " + AimAllowed);
         if (_starterAssetsInputs.aiming && AimAllowed && _thirdPersonController.Grounded && !_thirdPersonController._isDodging) 
         {
             doAim = true;

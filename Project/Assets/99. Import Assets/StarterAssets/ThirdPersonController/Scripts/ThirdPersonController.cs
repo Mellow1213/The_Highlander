@@ -117,6 +117,8 @@ namespace StarterAssets
         public bool _isDodging = false;
         private float dodgeTime = 0f;
 
+        public GameObject MotionTrail;
+
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
@@ -240,6 +242,8 @@ namespace StarterAssets
             {
                 _animator.SetBool("isDodging", true);
                 _isDodging = true;
+                MotionTrail.SetActive(false);
+                MotionTrail.SetActive(true);
             }
             if (_input.dodge)
                 _input.dodge = false;
@@ -250,7 +254,7 @@ namespace StarterAssets
             {
                 _thirdPersonSwordController.AttackAllowed = false;
                 dodgeTime += Time.deltaTime;
-                if (dodgeTime >= 1.0f)
+                if (dodgeTime >= 1.7f)
                 {
                     _isDodging = false;
                     dodgeTime = 0f;
