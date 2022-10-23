@@ -37,6 +37,9 @@ namespace StarterAssets
         [Space(10)]
         [Tooltip("The height the player can jump")]
         public float JumpHeight = 1.2f;
+        public bool JumpAllowed = true;
+        public bool MoveAllowed = true;
+        public bool DodgeAllowed = true;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
@@ -107,9 +110,11 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private ThirdPersonSwordController _thirdPersonSwordController;
+        private ThirdPersonShooterController _thirdPersonShooterController;
 
         private bool _rotateOnMove = true;
-        private bool _isDodging = false;
+        public bool _isDodging = false;
         private float dodgeTime = 0f;
 
         private const float _threshold = 0.01f;
@@ -140,8 +145,9 @@ namespace StarterAssets
 
         private void Start()
         {
+            _thirdPersonShooterController = GetComponent<ThirdPersonShooterController>();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-
+            _thirdPersonSwordController = GetComponent<ThirdPersonSwordController>();
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -162,9 +168,11 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
+            if (JumpAllowed)
+                JumpAndGravity();
+            if (MoveAllowed)
+                Move();
             GroundedCheck();
-            Move();
         }
 
         private void LateUpdate()
@@ -228,19 +236,21 @@ namespace StarterAssets
             // if there is no input, set the target speed to 0
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            if (_input.dodge && !_isDodging)
+            if (_input.dodge && !_isDodging && DodgeAllowed)
             {
                 _animator.SetBool("isDodging", true);
-                _input.dodge = false;
                 _isDodging = true;
             }
             if (_input.dodge)
                 _input.dodge = false;
 
+
+
             if (_isDodging)
             {
+                _thirdPersonSwordController.AttackAllowed = false;
                 dodgeTime += Time.deltaTime;
-                if (dodgeTime >= 1.5f)
+                if (dodgeTime >= 1.0f)
                 {
                     _isDodging = false;
                     dodgeTime = 0f;
@@ -255,6 +265,12 @@ namespace StarterAssets
                     targetSpeed = DodgeSpeed;
                 }
             }
+            else
+            {
+                _thirdPersonSwordController.AttackAllowed = true;
+            }
+
+
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
@@ -316,6 +332,16 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
+            if (!Grounded)
+            {
+                _thirdPersonSwordController.AttackAllowed = false;
+                DodgeAllowed = false;
+            }
+            else
+            {
+                _thirdPersonSwordController.AttackAllowed = true;
+                DodgeAllowed = true;
+            }
             if (Grounded)
             {
                 // reset the fall timeout timer

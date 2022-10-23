@@ -9,9 +9,7 @@ public class PlayerAttackSystem : MonoBehaviour
     private StarterAssetsInputs _input;
     private Animator _animator;
 
-    public GameObject Gun;
     public GameObject GunLookPos;
-    public GameObject Sword;
 
     private void Start()
     {
@@ -22,7 +20,6 @@ public class PlayerAttackSystem : MonoBehaviour
     private void Update()
     {
         Attack();
-        ChangeWeapon();
     }
     void Attack()
     {
@@ -37,23 +34,6 @@ public class PlayerAttackSystem : MonoBehaviour
                 transform.forward = Vector3.Lerp(transform.forward, _thirdPersonShooterController.aimDirection, Time.deltaTime * 120f); //DOTWeen으로 나중에 값 변경
                 //Debug.Log("근접 공격 실행");
             }
-        }
-    }
-
-
-    void ChangeWeapon()
-    {
-        if (_input.aiming)
-        {
-            _animator.SetBool("isAiming", _input.aiming);
-            Gun.SetActive(true);
-            Sword.SetActive(false);
-        }
-        else
-        {
-            _animator.SetBool("isAiming", false);
-            Gun.SetActive(false);
-            Sword.SetActive(true);
         }
     }
 }

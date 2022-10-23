@@ -25,7 +25,10 @@ public class ThirdPersonShooterController : MonoBehaviour
     // 총 발사 간격(딜레이) 관련 변수
     public float fireDelay = 0.3f;
     [SerializeField] private float fireTimer = 0f;
-
+    public GameObject Sword;
+    public GameObject Gun;
+    public bool AimAllowed = true;
+    private bool doAim;
     Transform t;
     private void Awake()
     {
@@ -37,9 +40,9 @@ public class ThirdPersonShooterController : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.enabled = false;
     }
+
     private void Update()
     {
-
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
 
@@ -54,12 +57,37 @@ public class ThirdPersonShooterController : MonoBehaviour
             hitTransform = raycastHit.transform;
         }
 
-
-        if (_starterAssetsInputs.aiming)
+        Debug.Log("AimAllowed = " + AimAllowed);
+        if (_starterAssetsInputs.aiming && AimAllowed && _thirdPersonController.Grounded && !_thirdPersonController._isDodging) 
         {
+            doAim = true;
+        }
+        else
+        {
+            doAim = false;
+        }
+
+        if (doAim)
+        {
+            _animator.SetBool("isAiming", doAim);
+            Gun.SetActive(true);
+            Sword.SetActive(false);
+        }
+        else
+        {
+            _animator.SetBool("isAiming", false);
+            Gun.SetActive(false);
+            Sword.SetActive(true);
+        }
+
+        if (doAim && _animator.GetCurrentAnimatorStateInfo(0).IsTag("CanAim"))
+        {
+
             _aimVirtualCamera.gameObject.SetActive(true);
             _thirdPersonController.SetSensitivity(aimingSensitivity);
             _thirdPersonController.SetRotateOnMove(false);
+            _thirdPersonController.JumpAllowed = false;
+            _thirdPersonController.DodgeAllowed = false;
 
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
         }
@@ -68,9 +96,11 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetRotateOnMove(true);
             _aimVirtualCamera.gameObject.SetActive(false);
             _thirdPersonController.SetSensitivity(normalSensitivity);
+            _thirdPersonController.JumpAllowed = true;
+            _thirdPersonController.DodgeAllowed = true;
         }
 
-        if (_starterAssetsInputs.attack && _starterAssetsInputs.aiming && fireTimer >= fireDelay)
+        if (_starterAssetsInputs.attack && doAim && fireTimer >= fireDelay)
         {
             StartCoroutine(CreateShotLine());
             if (hitTransform != null)
@@ -92,7 +122,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_starterAssetsInputs.aiming)
+        if (doAim)
         {
             t.LookAt(debugTransfrom);
             t.rotation = t.rotation * Quaternion.Euler(chestOffset);

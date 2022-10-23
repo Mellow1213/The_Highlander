@@ -15189,6 +15189,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
   FootstepAudioVolume: 0.3
   JumpHeight: 1.2
+  JumpAllowed: 1
+  MoveAllowed: 1
+  DodgeAllowed: 1
   Gravity: -15
   JumpTimeout: 0.3
   FallTimeout: 0.15
@@ -15878,6 +15881,8 @@ MonoBehaviour:
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   fireDelay: 0.1
   fireTimer: 0
+  Sword: {fileID: 5200204639896017414}
+  Gun: {fileID: 5200204639328336998}
   chestOffset: {x: -180, y: -80, z: 90}
   firepos: {fileID: 1997329782}
 --- !u!114 &6982812147986160441
@@ -15892,9 +15897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab588eb1a811c5429e8fa2169869b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gun: {fileID: 5200204639328336998}
   GunLookPos: {fileID: 1508472928}
-  Sword: {fileID: 5200204639896017414}
 --- !u!120 &6982812147986160442
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -16060,6 +16063,7 @@ MonoBehaviour:
   lastClickedTime: 0
   maxComboDelay: 1.7
   sword: {fileID: 2193486933948294174}
+  AttackAllowed: 1
 --- !u!4 &6983258930544403438
 Transform:
   m_ObjectHideFlags: 0
