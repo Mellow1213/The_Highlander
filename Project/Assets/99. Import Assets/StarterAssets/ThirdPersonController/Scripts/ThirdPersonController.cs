@@ -236,7 +236,7 @@ namespace StarterAssets
             // if there is no input, set the target speed to 0
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            if (_input.dodge && !_isDodging && DodgeAllowed)
+            if (_input.dodge && !_isDodging && DodgeAllowed && !_thirdPersonShooterController.doAim)
             {
                 _animator.SetBool("isDodging", true);
                 _isDodging = true;

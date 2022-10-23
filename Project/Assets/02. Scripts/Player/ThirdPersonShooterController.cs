@@ -28,7 +28,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     public GameObject Sword;
     public GameObject Gun;
     public bool AimAllowed = true;
-    private bool doAim;
+    public bool doAim;
     Transform t;
     private void Awake()
     {
