@@ -37,7 +37,7 @@ public class ThirdPersonSwordController : MonoBehaviour
         else
             swordCollider.enabled = true;
 
-        if(noOfClick != 0)
+        if (noOfClick != 0)
         {
             _thirdPersonController.DodgeAllowed = false;
             _thirdPersonController.JumpAllowed = false;
@@ -61,7 +61,7 @@ public class ThirdPersonSwordController : MonoBehaviour
             noOfClick = 0;
         }
         if (Time.time - lastClickedTime > coolDownTime && AttackAllowed && _thirdPersonController.Grounded)
-            if (_starterAssetsInputs.attack && !_starterAssetsInputs.aiming && (noOfClick == 0 || _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.75f))
+            if (_starterAssetsInputs.attack && !_starterAssetsInputs.aiming && (noOfClick == 0 || _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.65f))
             {
                 Debug.Log("버튼 눌림");
                 DoAttack();
@@ -87,4 +87,5 @@ public class ThirdPersonSwordController : MonoBehaviour
         }
         noOfClick = Mathf.Clamp(noOfClick, 0, 3);
     }
+
 }

@@ -31,7 +31,7 @@ public class PlayerAttackSystem : MonoBehaviour
             }
             else
             {
-                transform.forward = Vector3.Lerp(transform.forward, _thirdPersonShooterController.aimDirection, Time.deltaTime * 120f); //DOTWeen으로 나중에 값 변경
+                // //DOTWeen으로 나중에 값 변경
                 //Debug.Log("근접 공격 실행");
             }
         }
