@@ -68,12 +68,14 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (doAim)
         {
+            debugTransfrom.gameObject.SetActive(true);
             _animator.SetBool("isAiming", doAim);
             Gun.SetActive(true);
             Sword.SetActive(false);
         }
         else
         {
+            debugTransfrom.gameObject.SetActive(false);
             _animator.SetBool("isAiming", false);
             Gun.SetActive(false);
             Sword.SetActive(true);

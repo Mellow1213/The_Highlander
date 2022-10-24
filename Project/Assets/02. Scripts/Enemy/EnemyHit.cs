@@ -10,13 +10,14 @@ public class EnemyHit : MonoBehaviour
     public int gold;
     Animator _animator;
     NavMeshAgent _navMeshAgent;
-
+    BoxCollider _bocCollider;
     public bool death = false;
 
     // Start is called before the first frame update
     void Start()
     {
         CurrentHP = HP;
+        _bocCollider = GetComponent<BoxCollider>();
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -41,6 +42,7 @@ public class EnemyHit : MonoBehaviour
                 death = true;
                 if(_navMeshAgent)
                     _navMeshAgent.speed = 0f;
+                _bocCollider.enabled = false;
             }
             //»ç¸Á ¸ð¼Ç
             if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.1 && _animator.GetCurrentAnimatorStateInfo(0).IsTag("Death"))
