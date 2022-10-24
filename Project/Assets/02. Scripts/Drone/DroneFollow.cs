@@ -28,7 +28,7 @@ public class DroneFollow : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, followTarget.transform.position, moveSpeed * Time.deltaTime * distance);
 
-        transform.position = new Vector3(transform.position.x, transform.position.y + Mathf.Sin(Time.time) * 1.4f * Time.deltaTime, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + Mathf.Sin(Time.time) * 0.8f * Time.deltaTime, transform.position.z);
 
         if (distance <= 0.5f)
         {
