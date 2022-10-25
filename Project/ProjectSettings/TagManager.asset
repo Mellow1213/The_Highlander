@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - Enemy
   - Bullet
+  - Map
+  - AttackTarget
   layers:
   - Default
   - TransparentFX

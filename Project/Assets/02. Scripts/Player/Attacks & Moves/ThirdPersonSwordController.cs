@@ -12,7 +12,7 @@ public class ThirdPersonSwordController : MonoBehaviour
     private ThirdPersonController _thirdPersonController;
     [SerializeField] private static int noOfClick = 0;
     [SerializeField] float lastClickedTime = 0;
-    [SerializeField] float maxComboDelay = 1.5f;
+    [SerializeField] float maxComboDelay = 2.5f;
 
     public GameObject sword;
     public bool AttackAllowed = true;
@@ -37,7 +37,7 @@ public class ThirdPersonSwordController : MonoBehaviour
         else
             swordCollider.enabled = true;
 
-        if (noOfClick != 0)
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsTag("Melee"))
         {
             _thirdPersonController.DodgeAllowed = false;
             _thirdPersonController.JumpAllowed = false;
@@ -51,22 +51,22 @@ public class ThirdPersonSwordController : MonoBehaviour
             _thirdPersonController.MoveAllowed = true;
             _thirdPersonShooterController.AimAllowed = true;
         }
-        _animator.SetInteger("MeleeAttackState", noOfClick);
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Walk Run Blend") && noOfClick == 3)
-        {
-            noOfClick = 0;
-        }
+                        
         if (Time.time - lastClickedTime >= maxComboDelay)
         {
             noOfClick = 0;
         }
-        if (Time.time - lastClickedTime > coolDownTime && AttackAllowed && _thirdPersonController.Grounded)
-            if (_starterAssetsInputs.attack && !_starterAssetsInputs.aiming && (noOfClick == 0 || _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.65f))
+
+        Debug.Log("Time.time - lastClickedTime = " + (Time.time - lastClickedTime));
+        Debug.Log("coolDownTime = " + coolDownTime);
+        if ((Time.time - lastClickedTime) > coolDownTime && AttackAllowed && _thirdPersonController.Grounded)
+            if (_starterAssetsInputs.attack && !_starterAssetsInputs.aiming)
             {
                 Debug.Log("버튼 눌림");
                 DoAttack();
                 _starterAssetsInputs.attack = false;
             }
+        Debug.Log("noOfClick = " + noOfClick);
     }
 
     void DoAttack()
@@ -75,16 +75,21 @@ public class ThirdPersonSwordController : MonoBehaviour
         noOfClick++;
         if (noOfClick == 1)
         {
+            _animator.SetInteger("MeleeAttackState", 1);
             Debug.Log("콤보1 공격");
         }
         if (noOfClick == 2)
         {
+            _animator.SetInteger("MeleeAttackState", 2);
             Debug.Log("콤보2 공격");
         }
         if (noOfClick == 3)
         {
+            _animator.SetInteger("MeleeAttackState", 3);
             Debug.Log("콤보3 공격");
+            noOfClick = 0;
         }
+        _animator.SetTrigger("MeleeAttack");
         noOfClick = Mathf.Clamp(noOfClick, 0, 3);
     }
 

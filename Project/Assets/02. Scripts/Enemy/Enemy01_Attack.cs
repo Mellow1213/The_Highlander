@@ -9,6 +9,11 @@ public class Enemy01_Attack : MonoBehaviour
     Animator _animator;
     EnemyHit _enemyHit;
     GameObject target;
+    public GameObject bullet;
+    public Transform muzzlePos;
+    
+    public float fireRate = 0.8f;
+    float fireTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +28,16 @@ public class Enemy01_Attack : MonoBehaviour
     {
         if (!_enemyHit.death)
         {
-            if (Vector3.Distance(target.transform.position, gameObject.transform.position) <= 6)
+            if (Vector3.Distance(target.transform.position, gameObject.transform.position) <= 36)
             {
                 _animator.SetBool("Fire", true);
                 _navMeshAgent.speed = 0.4f;
+                fireTimer += Time.deltaTime;
+                if(fireTimer > fireRate)
+                {
+                    fireTimer = 0f;
+                    Instantiate(bullet, muzzlePos.position, Quaternion.identity);
+                }
             }
             else
             {
