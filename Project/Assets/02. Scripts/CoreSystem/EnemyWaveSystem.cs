@@ -18,7 +18,7 @@ public class EnemyWaveSystem : MonoBehaviour
     [SerializeField] int waveLevel = 1;
     [SerializeField] int waveCount = 0;
     [SerializeField] public float nextWaveWaitingTime;
-
+    GameObject player;
     IEnumerator SpawnWave()
     {
         // 문 닫기
@@ -58,13 +58,18 @@ public class EnemyWaveSystem : MonoBehaviour
     private void Start()
     {
         _input = GameObject.Find("PlayerArmature").GetComponent<StarterAssetsInputs>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
-        if (_input.item01)
+        if(Vector3.Distance(player.transform.position, transform.position) < 5f)
         {
-            StartCoroutine(SpawnWave());
-            _input.item01 = false;
+            Debug.Log("웨이브 시작 가능!!");
+            if (_input.item01)
+            {
+                StartCoroutine(SpawnWave());
+                _input.item01 = false;
+            }
         }
     }
 }

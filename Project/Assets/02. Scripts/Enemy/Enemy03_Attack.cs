@@ -12,6 +12,9 @@ public class Enemy03_Attack : MonoBehaviour
     Animator _animator;
     EnemyHit _enemyHit;
 
+    public GameObject firePrefab;
+    public Transform muzzle;
+
     float timer = 0.0f;
     public float fireRate = 1.5f;
     // Start is called before the first frame update
@@ -40,6 +43,7 @@ public class Enemy03_Attack : MonoBehaviour
                 {
                     timer = 0f;
                     _animator.SetTrigger("Fire");
+                    Instantiate(firePrefab, muzzle.position, Quaternion.identity);
                     //실제 발사체 생성
                 }
             }

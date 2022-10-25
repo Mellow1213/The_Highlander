@@ -57,8 +57,6 @@ public class ThirdPersonSwordController : MonoBehaviour
             noOfClick = 0;
         }
 
-        Debug.Log("Time.time - lastClickedTime = " + (Time.time - lastClickedTime));
-        Debug.Log("coolDownTime = " + coolDownTime);
         if ((Time.time - lastClickedTime) > coolDownTime && AttackAllowed && _thirdPersonController.Grounded)
             if (_starterAssetsInputs.attack && !_starterAssetsInputs.aiming)
             {
@@ -66,7 +64,6 @@ public class ThirdPersonSwordController : MonoBehaviour
                 DoAttack();
                 _starterAssetsInputs.attack = false;
             }
-        Debug.Log("noOfClick = " + noOfClick);
     }
 
     void DoAttack()
@@ -76,17 +73,14 @@ public class ThirdPersonSwordController : MonoBehaviour
         if (noOfClick == 1)
         {
             _animator.SetInteger("MeleeAttackState", 1);
-            Debug.Log("ÄÞº¸1 °ø°Ý");
         }
         if (noOfClick == 2)
         {
             _animator.SetInteger("MeleeAttackState", 2);
-            Debug.Log("ÄÞº¸2 °ø°Ý");
         }
         if (noOfClick == 3)
         {
             _animator.SetInteger("MeleeAttackState", 3);
-            Debug.Log("ÄÞº¸3 °ø°Ý");
             noOfClick = 0;
         }
         _animator.SetTrigger("MeleeAttack");
