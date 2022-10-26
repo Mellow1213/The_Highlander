@@ -32,7 +32,7 @@ public class Enemy03_Attack : MonoBehaviour
     {
         if (!_enemyHit.death)
         {
-            if (Vector3.Distance(target.transform.position, transform.position) < 30f)
+            if (Vector3.Distance(target.transform.position, transform.position) < 50f)
             {
                 transform.LookAt(target.transform);
                 timer += Time.deltaTime;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class d : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public GameObject hitEffect;
     GameObject player;
@@ -11,6 +11,7 @@ public class d : MonoBehaviour
     Vector3 targetVector;
     public float speed = 10f;
     public float bulletDamage = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {

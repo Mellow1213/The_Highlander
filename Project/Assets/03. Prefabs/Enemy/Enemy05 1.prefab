@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 6
-  bulletPrefabs: {fileID: 8519737697229671422, guid: 7e66e67bff95c7149b5a9421e7f51b36,
+  bulletPrefabs: {fileID: 4006671865331657505, guid: 15c3cab1335db24419db9f409cd0ebb3,
     type: 3}
   FireRate: 0.8
   muzzle: {fileID: 4385323454541138487}

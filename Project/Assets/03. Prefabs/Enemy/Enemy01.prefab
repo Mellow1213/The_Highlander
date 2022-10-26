@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f735e128d283c3e4a9fa5f1b786c1cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8519737697229671422, guid: 7e66e67bff95c7149b5a9421e7f51b36, type: 3}
+  bullet: {fileID: 8331748768110231275, guid: 7e66e67bff95c7149b5a9421e7f51b36, type: 3}
   muzzlePos: {fileID: 5670046606082097411}
   fireRate: 0.8
 --- !u!1 &5408595533653857656

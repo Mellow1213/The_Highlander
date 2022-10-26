@@ -8,7 +8,7 @@ public class Enemy02_Attack : MonoBehaviour
     Animator _animator;
     NavMeshAgent _navMeshAgent;
 
-    public float attackDistance = 1f;
+    public float attackDistance = 3f;
 
     GameObject target;
 
