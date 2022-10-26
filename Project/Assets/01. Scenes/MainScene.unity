@@ -3529,10 +3529,15 @@ MonoBehaviour:
     - {fileID: 4805871062509698711, guid: 17bc5311521147b47930714119092e8e, type: 3}
     MaxSpawnCount: 1
     MaxWaveCount: 2
+  - Enemies:
+    - {fileID: 4805871062509698711, guid: 17bc5311521147b47930714119092e8e, type: 3}
+    MaxSpawnCount: 1
+    MaxWaveCount: 5
   _doorAction: {fileID: 565074259}
   waveLevel: 1
   waveCount: 0
   nextWaveWaitingTime: 3
+  startPos: {fileID: 1982546476}
 --- !u!4 &458340904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4854076730511848, guid: 8e810c42c8046244c9864a347cb8ce08,
