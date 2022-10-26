@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCoolTime: 4
   timer: 0
-  Dancer: {fileID: 806178728440299901, guid: d585f4e4289afe64a98ad8b306b0f1dd, type: 3}
+  Dancer: {fileID: 1620362041692586739, guid: d585f4e4289afe64a98ad8b306b0f1dd, type: 3}
 --- !u!1 &3241426948824314689
 GameObject:
   m_ObjectHideFlags: 0

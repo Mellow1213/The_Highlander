@@ -30,12 +30,9 @@ public class Bullet_Dancer : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > 0.5f)
         {
-            transform.position += targetVector *10* speed * Time.deltaTime;
+            speed = Mathf.Lerp(speed, 50f, 10f* Time.deltaTime);
         }
-        else
-        {
             transform.position += targetVector * speed * Time.deltaTime;
-        }
     }
 
     private void OnTriggerEnter(Collider other)

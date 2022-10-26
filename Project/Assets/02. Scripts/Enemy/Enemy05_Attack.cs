@@ -10,6 +10,7 @@ public class Enemy05_Attack : MonoBehaviour
     float timer = 0f;
     bool attack = false;
 
+    public GameObject[] slashWave;
     Animator _animator;
     NavMeshAgent _navMeshAgent;
     EnemyHit _enemyHit;
@@ -38,10 +39,9 @@ public class Enemy05_Attack : MonoBehaviour
 
         if (!_enemyHit.death)
         {
-            if (timer > 8f && !attack)
+            if (timer > 4f && !attack)
             {
                 _navMeshAgent.speed = 0f;
-                Debug.Log("회오리 공격");
                 _animator.SetTrigger("Spin");
                 timer = 0f;
             }
@@ -67,5 +67,11 @@ public class Enemy05_Attack : MonoBehaviour
             }
             transform.LookAt(target.transform);
         }
+    }
+
+    public void DoSlash()
+    {
+        for (int i = 0; i < slashWave.Length; i++)
+            Instantiate(slashWave[i], transform.position, slashWave[i].transform.rotation);
     }
 }
