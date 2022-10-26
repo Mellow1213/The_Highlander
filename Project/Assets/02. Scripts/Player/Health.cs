@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float health = 10f;
+    public float maxHealth = 100f;
+    public float health = 100f;
 
     Animator _animator;
 
@@ -13,12 +14,14 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        health = Mathf.Clamp(health, 0, maxHealth);
         Death();
     }
 
@@ -30,6 +33,12 @@ public class Health : MonoBehaviour
             _animator.SetTrigger("Death");
         }
     }   
+
+    public float getHealthPercent()
+    {
+        health = Mathf.Clamp(health, 0, maxHealth);
+        return health / maxHealth;
+    }
 
     public void Damaged(float damage)
     {

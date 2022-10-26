@@ -15,10 +15,15 @@ public class EnemyWaveSystem : MonoBehaviour
 
     public Wave[] waves;
 
-    [SerializeField] int waveLevel = 1;
-    [SerializeField] int waveCount = 0;
+    [SerializeField] public int waveLevel = 1;
+    [SerializeField] public int waveCount = 0;
     [SerializeField] public float nextWaveWaitingTime;
     GameObject player;
+
+    public int getLeftWave()
+    {
+        return waves[waveLevel].MaxWaveCount - waveCount;
+    }
     IEnumerator SpawnWave()
     {
         // ¹® ´Ý±â
