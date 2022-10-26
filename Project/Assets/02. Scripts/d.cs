@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class d : MonoBehaviour
 {
+    public GameObject hitEffect;
     GameObject player;
     Vector3 playerPos;
     Vector3 myPos;
@@ -30,6 +31,7 @@ public class d : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        Instantiate(hitEffect, transform.position, Quaternion.identity);
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Health>().Damaged();

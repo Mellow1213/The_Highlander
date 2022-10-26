@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56117e880eb10e4387021aa85079316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 8668698753711938242, guid: be6af1f4a01452748bf79fefed4d1580,
+    type: 3}
   speed: 50
 --- !u!1 &8519737697679268027
 GameObject:
