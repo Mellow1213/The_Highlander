@@ -10,12 +10,15 @@ public class Boss_Attack : MonoBehaviour
     [SerializeField] bool death = false;
     Animator _animator;
     NavMeshAgent _navMeshAgent;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        _navMeshAgent.destination = player.transform.position;
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class Boss_Attack : MonoBehaviour
                     Debug.Log("끝");
                     break;
             }
-        else if(phase <= 3)
+        else if (phase <= 3)
         {
             phase++;
             death = false;
@@ -59,12 +62,9 @@ public class Boss_Attack : MonoBehaviour
         Debug.Log("플레이어 패배");
     }
 
-    public GameObject muzzle;
+    public GameObject[] muzzle;
     public GameObject bullet;
-    public float fireDelay;
-    float fireTimer = 0f;
     public GameObject explosion;
-    public GameObject laser;
     public float skillDelay;
     float skillTimer = 0;
 
@@ -75,10 +75,22 @@ public class Boss_Attack : MonoBehaviour
         {
             phase1Start = true;
         }
-        //총알 공격
-        //가끔 폭발 or 메테오(레이저). 시전 직전에 바닥 이펙트
+        skillTimer += Time.deltaTime;
+        if (skillTimer >= skillDelay)
+        {
+            int num = Random.Range(0, 4);
+            if (num == 3)
+            {
+                Instantiate(explosion);
+            }
+            else
+            {
+                Instantiate(bullet);
+            }
+        }
     }
 
+    public GameObject laser;
     public GameObject barrier;
     public float barrierSpawnDelay;
     float barrierSpawnTimer = 0f;
@@ -90,6 +102,32 @@ public class Boss_Attack : MonoBehaviour
         if (!phase2Start)
         {
             phase2Start = true;
+        }
+        skillTimer += Time.deltaTime;
+        if (skillTimer >= skillDelay)
+        {
+            int num = Random.Range(0, 4);
+            if(num == 0)
+            {
+                Instantiate(bullet);
+            }
+            else if (num == 1)
+            {
+                Instantiate(explosion);
+            }
+            else if(num == 2)
+            {
+                Instantiate(laser);
+            }
+            else if(num == 3)
+            {
+                Instantiate(servant);
+            }
+        }
+        barrierSpawnTimer += Time.deltaTime;
+        if(barrierSpawnTimer >= barrierSpawnDelay)
+        {
+            Debug.Log("배리어 생성");
         }
         //1페이즈 하는 것들 데미지 조금 강화. 시전 시간 조금 감소.
         //일정 시간마다 배리어 소환. 제한 시간 안에 못깨면 전체 범위 데미지.
@@ -107,6 +145,8 @@ public class Boss_Attack : MonoBehaviour
     {
         if (!phase3Start)
         {
+            Instantiate(flyServant);
+            Debug.Log("공중으로 이동");
             phase3Start = true;
         }
         endGameTimer += Time.deltaTime;
