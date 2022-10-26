@@ -227,8 +227,11 @@ namespace StarterAssets
                 _cinemachineTargetYaw, 0.0f);
         }
 
+        public float dodgeCoolTime;
+        float dodgeTimer = 0f;
         private void Move()
         {
+            Debug.Log("dodgeTimer = " + dodgeTimer);
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -238,7 +241,7 @@ namespace StarterAssets
             // if there is no input, set the target speed to 0
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            if (_input.dodge && !_isDodging && DodgeAllowed && !_thirdPersonShooterController.doAim)
+            if (_input.dodge && !_isDodging && DodgeAllowed && !_thirdPersonShooterController.doAim && dodgeTimer > dodgeCoolTime)
             {
                 _animator.SetBool("isDodging", true);
                 _isDodging = true;
@@ -254,10 +257,10 @@ namespace StarterAssets
             {
                 _thirdPersonSwordController.AttackAllowed = false;
                 dodgeTime += Time.deltaTime;
-                if (dodgeTime >= 1.7f)
+                if (dodgeTime >= 1.0f)
                 {
-                    _isDodging = false;
                     dodgeTime = 0f;
+                    _isDodging = false;
                     //targetSpeed = 0f;
                 }
                 else if (dodgeTime > 0.5f)
@@ -266,12 +269,14 @@ namespace StarterAssets
                 }
                 else
                 {
+                    dodgeTimer = 0f;
                     targetSpeed = DodgeSpeed;
                 }
             }
             else
             {
                 _thirdPersonSwordController.AttackAllowed = true;
+                dodgeTimer += Time.deltaTime;
             }
 
 

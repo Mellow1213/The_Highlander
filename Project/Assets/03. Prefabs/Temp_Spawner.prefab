@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 8477262467673818200, guid: 65f7cbf1783fb53418b172f88dcd0205, type: 3}
-  - {fileID: 7476601308206563492, guid: caa2faf08e8ba5841a9e5cfabe6bf2fc, type: 3}
-  spawnEnemy: 3
+  - {fileID: 4787718420134445065, guid: 65f7cbf1783fb53418b172f88dcd0205, type: 3}
+  - {fileID: 8640376751651583366, guid: b8668f609527f43429ecaf01af3474fa, type: 3}
+  - {fileID: 2015664247188758045, guid: 07cba09a3cf5d4647bb4317c34b520b9, type: 3}
+  spawnEnemy: 1
 --- !u!65 &4805871062509698710
 BoxCollider:
   m_ObjectHideFlags: 0
