@@ -14,7 +14,7 @@ public class EnemyWaveSystem : MonoBehaviour
     }
 
     public Wave[] waves;
-
+    public DoorAction _doorAction;
     [SerializeField] public int waveLevel = 1;
     [SerializeField] public int waveCount = 0;
     [SerializeField] public float nextWaveWaitingTime;
@@ -27,6 +27,7 @@ public class EnemyWaveSystem : MonoBehaviour
     IEnumerator SpawnWave()
     {
         // 문 닫기
+        _doorAction.Close();
 
         while (waveCount < waves[waveLevel].MaxWaveCount)
         {
@@ -44,6 +45,7 @@ public class EnemyWaveSystem : MonoBehaviour
         }
 
         // 문 열기
+        _doorAction.Open();
         waveCount = 0;
         waveLevel++;
     }
@@ -58,7 +60,7 @@ public class EnemyWaveSystem : MonoBehaviour
         else
             return pos;
     }
-
+    public GameObject startPos;
     StarterAssetsInputs _input; // 실행용 임시 Input.
     private void Start()
     {
@@ -67,13 +69,13 @@ public class EnemyWaveSystem : MonoBehaviour
     }
     private void Update()
     {
-        if(Vector3.Distance(player.transform.position, transform.position) < 5f)
+        if(Vector3.Distance(player.transform.position, startPos.transform.position) < 5f)
         {
             Debug.Log("웨이브 시작 가능!!");
-            if (_input.item01)
+            if (_input.interaction)
             {
                 StartCoroutine(SpawnWave());
-                _input.item01 = false;
+                _input.interaction = false;
             }
         }
     }

@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class DoorAction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 openPos;
+    public Vector3 closePos;
 
-    // Update is called once per frame
-    void Update()
+    public void Open()
     {
-        
+        transform.DOLocalMove(openPos, 1f);
+    }
+    public void Close()
+    {
+        transform.DOLocalMove(closePos, 1f);
+
     }
 }
