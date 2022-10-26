@@ -145,8 +145,10 @@ namespace StarterAssets
             }
         }
 
+        Health _health;
         private void Start()
         {
+            _health = GetComponent<Health>();
             _thirdPersonShooterController = GetComponent<ThirdPersonShooterController>();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             _thirdPersonSwordController = GetComponent<ThirdPersonSwordController>();
@@ -170,10 +172,13 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            if (JumpAllowed)
-                JumpAndGravity();
-            if (MoveAllowed)
-                Move();
+            if (!_health.isDeath)
+            {
+                if (JumpAllowed)
+                    JumpAndGravity();
+                if (MoveAllowed)
+                    Move();
+            }
             GroundedCheck();
         }
 
@@ -231,7 +236,6 @@ namespace StarterAssets
         float dodgeTimer = 0f;
         private void Move()
         {
-            Debug.Log("dodgeTimer = " + dodgeTimer);
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -251,7 +255,7 @@ namespace StarterAssets
             if (_input.dodge)
                 _input.dodge = false;
 
-
+            _health.isInvade = _isDodging;
 
             if (_isDodging)
             {

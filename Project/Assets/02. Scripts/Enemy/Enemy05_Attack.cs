@@ -14,6 +14,13 @@ public class Enemy05_Attack : MonoBehaviour
     NavMeshAgent _navMeshAgent;
     EnemyHit _enemyHit;
 
+
+    public float attackDistance = 6f;
+    public GameObject bulletPrefabs;
+    public float FireRate = 0.8f;
+    float fireTimer = 0f;
+    public GameObject muzzle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,14 +46,21 @@ public class Enemy05_Attack : MonoBehaviour
                 timer = 0f;
             }
 
-            if (Vector3.Distance(transform.position, target.transform.position) < 6f)
+            if (Vector3.Distance(transform.position, target.transform.position) < attackDistance)
             {
+                fireTimer += Time.deltaTime;
                 _animator.SetBool("Shoot", true);
                 _navMeshAgent.speed = 0f;
                 attack = true;
+                if(fireTimer >= FireRate)
+                {
+                    Instantiate(bulletPrefabs, muzzle.transform.position, Quaternion.identity);
+                    fireTimer = 0f;
+                }
             }
             else
             {
+                fireTimer = 0f;
                 _navMeshAgent.speed = 2f;
                 attack = false;
                 _animator.SetBool("Shoot", false);

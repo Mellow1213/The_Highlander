@@ -60,7 +60,6 @@ public class ThirdPersonSwordController : MonoBehaviour
         if ((Time.time - lastClickedTime) > coolDownTime && AttackAllowed && _thirdPersonController.Grounded)
             if (_starterAssetsInputs.attack && !_starterAssetsInputs.aiming)
             {
-                Debug.Log("버튼 눌림");
                 DoAttack();
                 _starterAssetsInputs.attack = false;
             }

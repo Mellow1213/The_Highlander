@@ -27,7 +27,6 @@ public class SlashDamage : MonoBehaviour
         }
         else
         {
-            Debug.Log("«‰ «Íº’¡˙¿Ã¥Ÿ");
         }
     }
 }

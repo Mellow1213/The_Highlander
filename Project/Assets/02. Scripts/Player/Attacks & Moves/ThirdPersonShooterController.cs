@@ -19,6 +19,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     public Vector3 aimDirection;
     public Vector3 mouseWorldPosition = Vector3.zero;
 
+    Health _health;
+
     private Animator _animator;
     private LineRenderer _lineRenderer;    //ÃÑ¾Ë ±ËÀû »ý¼º ¶óÀÎ ·»´õ·¯
 
@@ -32,6 +34,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     Transform t;
     private void Awake()
     {
+        _health = GetComponent<Health>();
         _animator = GetComponent<Animator>();
         if (_animator)
             t = _animator.GetBoneTransform(HumanBodyBones.Spine);
@@ -57,7 +60,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             hitTransform = raycastHit.transform;
         }
 
-        if (_starterAssetsInputs.aiming && AimAllowed && _thirdPersonController.Grounded && !_thirdPersonController._isDodging) 
+        if (_starterAssetsInputs.aiming && AimAllowed && _thirdPersonController.Grounded && !_thirdPersonController._isDodging && !_health.isDeath) 
         {
             doAim = true;
         }

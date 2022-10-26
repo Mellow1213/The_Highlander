@@ -10,6 +10,7 @@ public class d : MonoBehaviour
     Vector3 myPos;
     Vector3 targetVector;
     public float speed = 10f;
+    public float bulletDamage = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +31,20 @@ public class d : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-        Instantiate(hitEffect, transform.position, Quaternion.identity);
+
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Health>().Damaged();
+            if (!other.GetComponent<Health>().isInvade)
+            {
+                other.GetComponent<Health>().Damaged(bulletDamage);
+                Destroy(gameObject);
+                Instantiate(hitEffect, transform.position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
         }
     }
 
