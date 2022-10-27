@@ -13,6 +13,8 @@ public class Enemy02_Attack : MonoBehaviour
     GameObject target;
     Health _health;
 
+    EnemyHit enemyHit;
+
     public float damage = 1f;
 
     bool isAttacking = false;
@@ -25,6 +27,7 @@ public class Enemy02_Attack : MonoBehaviour
         _health = target.GetComponent<Health>();
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        enemyHit = GetComponent<EnemyHit>();
     }
 
     public void AttackVFX()
@@ -52,23 +55,28 @@ public class Enemy02_Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, target.transform.position) <= attackDistance && !isAttacking)
+        if (!enemyHit.death)
         {
-            isAttacking = true;
-        }
-        if (chaseStart)
-        {
-            if (isAttacking)
+            if (Vector3.Distance(transform.position, target.transform.position) <= attackDistance && !isAttacking)
             {
-                isAttacking = false;
-                _animator.SetBool("Attack", true);
-                _navMeshAgent.speed = 0;
+                isAttacking = true;
             }
-            else
+            if (chaseStart)
             {
-                _navMeshAgent.speed = 7;
-                _animator.SetBool("Attack", false);
+                if (isAttacking)
+                {
+                    isAttacking = false;
+                    _animator.SetBool("Attack", true);
+                    _navMeshAgent.speed = 0;
+                }
+                else
+                {
+                    _navMeshAgent.speed = 7;
+                    _animator.SetBool("Attack", false);
+                }
             }
         }
+        else
+            _navMeshAgent.speed = 0f;
     }
 }
