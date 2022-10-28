@@ -9,15 +9,14 @@ public class Shop : MonoBehaviour
     public RectTransform uiGroup;
     StarterAssetsInputs _input;
     GameObject player;
-    SphereCollider sphereCollider;
-    bool isRun = false;
     bool allowedShow = false;
-    bool isShowing = false;
+    public bool isShowing = false;
+    Health health;
     private void Start()
     {
-        sphereCollider = GetComponent<SphereCollider>();
         player = GameObject.FindGameObjectWithTag("Player");
         _input = player.GetComponent<StarterAssetsInputs>();
+        health = player.GetComponent<Health>();
     }
 
     private void Update()
@@ -67,7 +66,8 @@ public class Shop : MonoBehaviour
 
     public void Heal()
     {
-
+        GameManager.Instance.gold -= 100;
+        health.health += 5f;
     }
     public void PlusHealth()
     {
