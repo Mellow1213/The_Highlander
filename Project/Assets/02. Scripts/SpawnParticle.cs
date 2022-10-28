@@ -5,4 +5,9 @@ using UnityEngine.VFX;
 
 public class SpawnParticle : MonoBehaviour
 {
+    private void Update()
+    {
+        GameManager.Instance.gold += 3;
+
+    }
 }

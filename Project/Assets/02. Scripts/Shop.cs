@@ -64,4 +64,21 @@ public class Shop : MonoBehaviour
                 HideUI();
         }
     }
+
+    public void Heal()
+    {
+
+    }
+    public void PlusHealth()
+    {
+    }
+
+    public void PlusFireDamage()
+    {
+
+    }
+    public void PlusSwordDamage()
+    {
+
+    }
 }
