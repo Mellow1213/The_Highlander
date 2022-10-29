@@ -46,4 +46,6 @@ public class GameManager : MonoBehaviour
     public float minusBarrierCost = 0f;
     public float minusSkillCost = 0f;
     public float minusUltimateCost = 0f;
+
+    public float Energy = 0f;
 }

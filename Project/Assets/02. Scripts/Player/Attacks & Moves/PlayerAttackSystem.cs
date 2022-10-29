@@ -2,38 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.UI;
 
 public class PlayerAttackSystem : MonoBehaviour
 {
-    private ThirdPersonShooterController _thirdPersonShooterController;
     private StarterAssetsInputs _input;
-    private Animator _animator;
 
-    public GameObject GunLookPos;
+    public GameObject barrier;
+    public GameObject spawnPos;
+    public float barrierCost;
+
+    public Image barrierImage;
+
 
     private void Start()
     {
-        _thirdPersonShooterController = GetComponent<ThirdPersonShooterController>();
         _input = GetComponent<StarterAssetsInputs>();
-        _animator = GetComponent<Animator>();
     }
     private void Update()
     {
-        Attack();
+        Barrier();
     }
-    void Attack()
+    void Barrier()
     {
-        if (_input.attack)
+        if (_input.weapon)
         {
-            if (_input.aiming)
+            _input.weapon = false;
+            if(GameManager.Instance.barrierAmount > 0 && GameManager.Instance.Energy >= barrierCost + GameManager.Instance.minusBarrierCost)
             {
-                //Debug.Log("원거리 공격 실행");
-            }
-            else
-            {
-                // //DOTWeen으로 나중에 값 변경
-                //Debug.Log("근접 공격 실행");
+                Instantiate(barrier, spawnPos.transform.position, barrier.transform.rotation);
+                GameManager.Instance.barrierAmount--;
+                GameManager.Instance.Energy -= barrierCost + GameManager.Instance.minusBarrierCost;
             }
         }
+        barrierImage.fillAmount = GameManager.Instance.Energy / (barrierCost + GameManager.Instance.minusBarrierCost);
     }
 }

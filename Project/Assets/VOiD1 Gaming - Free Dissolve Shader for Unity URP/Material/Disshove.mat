@@ -38,7 +38,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Boolean_25823AB5: 1
-    - Boolean_707F4C21: 1
+    - Boolean_707F4C21: 0
     - Boolean_7BA77F51: 0
     - ENUM_A9F6D788: 0
     - ENUM_BED51E75: 2
@@ -49,7 +49,7 @@ Material:
     - Vector1_A2ECFC7B: 0.05
     - Vector1_C8E292BE: 100
     - Vector1_C8EB9E54: 1
-    - Vector1_CFBBCBA: 0.9
+    - Vector1_CFBBCBA: -5
     - Vector1_DE929E18: 50
     - _QueueControl: 0
     - _QueueOffset: 23
