@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -18,6 +19,7 @@ namespace StarterAssets
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
         public float DodgeSpeed = 8f;
+        public Image[] dodgeCoolTimeImage;
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
@@ -282,7 +284,8 @@ namespace StarterAssets
                 _thirdPersonSwordController.AttackAllowed = true;
                 dodgeTimer += Time.deltaTime;
             }
-
+            dodgeCoolTimeImage[0].fillAmount = dodgeTimer / (dodgeCoolTime - GameManager.Instance.minusDodgeCoolTime);
+            dodgeCoolTimeImage[1].fillAmount = dodgeTimer / (dodgeCoolTime - GameManager.Instance.minusDodgeCoolTime);
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
