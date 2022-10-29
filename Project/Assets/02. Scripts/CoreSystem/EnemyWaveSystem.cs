@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
+using TMPro;
 
 public class EnemyWaveSystem : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EnemyWaveSystem : MonoBehaviour
         public int MaxWaveCount;
     }
 
+    public GameObject txt;
     public Wave[] waves;
     public DoorAction _doorAction;
     [SerializeField] public int waveLevel = 1;

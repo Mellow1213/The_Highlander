@@ -12,6 +12,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private float aimingSensitivity;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] private Transform debugTransfrom;
+    AudioSource ads;
 
     public GameObject bulletPrefab;
     private StarterAssetsInputs _starterAssetsInputs;
@@ -34,7 +35,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     Transform t;
     private void Awake()
     {
-        _health = GetComponent<Health>();
+        ads = GetComponent<AudioSource>(); ;
+           _health = GetComponent<Health>();
         _animator = GetComponent<Animator>();
         if (_animator)
             t = _animator.GetBoneTransform(HumanBodyBones.Spine);
@@ -133,8 +135,10 @@ public class ThirdPersonShooterController : MonoBehaviour
             t.rotation = t.rotation * Quaternion.Euler(chestOffset);
         }
     }
+    public AudioClip fireSound;
     IEnumerator CreateShotLine()
     {
+        ads.PlayOneShot(fireSound);
         _lineRenderer.enabled = true;
         fireTimer = 0f;
         yield return new WaitForSeconds(0.03f);

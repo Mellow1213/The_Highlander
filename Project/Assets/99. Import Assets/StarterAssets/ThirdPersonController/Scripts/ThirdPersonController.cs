@@ -15,6 +15,8 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        AudioSource _audioSource;
+        public AudioClip DodgeSound;
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -150,6 +152,7 @@ namespace StarterAssets
         Health _health;
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
             _health = GetComponent<Health>();
             _thirdPersonShooterController = GetComponent<ThirdPersonShooterController>();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
@@ -249,6 +252,7 @@ namespace StarterAssets
 
             if (_input.dodge && !_isDodging && DodgeAllowed && !_thirdPersonShooterController.doAim && dodgeTimer > dodgeCoolTime - GameManager.Instance.minusDodgeCoolTime)
             {
+                _audioSource.PlayOneShot(DodgeSound);
                 _animator.SetBool("isDodging", true);
                 _isDodging = true;
                 MotionTrail.SetActive(false);

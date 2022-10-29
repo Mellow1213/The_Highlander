@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class MainMenu : MonoBehaviour
     public Color color_fadeOut;
     public Renderer background;
     bool isRunning = false;
+    StarterAssets.StarterAssetsInputs im;
     // Start is called before the first frame update
     void Start()
     {
+        im = GetComponent<StarterAssets.StarterAssetsInputs>();
         image = panel.GetComponent<Image>();
         image.DOColor(color_fadeOut, 2f);
     }
@@ -23,6 +26,12 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (im.interaction)
+        {
+            im.interaction = false;
+            SceneManager.LoadScene(1);
+        }
+
         offset = Time.time;
         //background.material.SetTextureOffset(, new Vector2(offset, 0));
         if (!isRunning)

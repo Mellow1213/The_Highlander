@@ -15,11 +15,14 @@ public class Enemy03_Attack : MonoBehaviour
     public GameObject firePrefab;
     public Transform muzzle;
 
+    public AudioClip a;
+    public AudioSource b;
     float timer = 0.0f;
     public float fireRate = 1.5f;
     // Start is called before the first frame update
     void Start()
     {
+        b = GetComponent<AudioSource>();
         _enemyHit = GetComponent<EnemyHit>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -41,6 +44,7 @@ public class Enemy03_Attack : MonoBehaviour
                 _navMeshAgent.speed = 0f;
                 if (timer > fireRate)
                 {
+                    b.PlayOneShot(a);
                     timer = 0f;
                     _animator.SetTrigger("Fire");
                     Instantiate(firePrefab, muzzle.position, Quaternion.identity);

@@ -21,10 +21,13 @@ public class Enemy05_Attack : MonoBehaviour
     public float FireRate = 0.8f;
     float fireTimer = 0f;
     public GameObject muzzle;
+    AudioSource a;
+    public AudioClip b;
 
     // Start is called before the first frame update
     void Start()
     {
+        a = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player");
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -54,6 +57,7 @@ public class Enemy05_Attack : MonoBehaviour
                 attack = true;
                 if(fireTimer >= FireRate)
                 {
+                    a.PlayOneShot(b);
                     Instantiate(bulletPrefabs, muzzle.transform.position, Quaternion.identity);
                     fireTimer = 0f;
                 }

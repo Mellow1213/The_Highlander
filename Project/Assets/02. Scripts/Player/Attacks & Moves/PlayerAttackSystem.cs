@@ -19,9 +19,16 @@ public class PlayerAttackSystem : MonoBehaviour
     public TextMeshProUGUI Energy;
     public TextMeshProUGUI barrierText;
 
+    AudioSource audioSource;
+
+    public AudioClip barrierSound;
+    public AudioClip skillSound;
+    public AudioClip USound;
+
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         _input = GetComponent<StarterAssetsInputs>();
     }
     private void Update()
@@ -39,6 +46,7 @@ public class PlayerAttackSystem : MonoBehaviour
             _input.weapon = false;
             if(GameManager.Instance.barrierAmount > 0 && GameManager.Instance.Energy >= barrierCost + GameManager.Instance.minusBarrierCost)
             {
+                audioSource.PlayOneShot(barrierSound);
                 Instantiate(barrier, spawnPos.transform.position, barrier.transform.rotation);
                 GameManager.Instance.barrierAmount--;
                 GameManager.Instance.Energy -= barrierCost + GameManager.Instance.minusBarrierCost;
@@ -65,6 +73,7 @@ public class PlayerAttackSystem : MonoBehaviour
             _input.skill = false;
             if (GameManager.Instance.Energy >= skillCost + GameManager.Instance.minusSkillCost && skillTimer > skillCoolTime)
             {
+                audioSource.PlayOneShot(skillSound);
                 GameObject temp = Instantiate(skill, spawnPos.transform.position, skill.transform.rotation);
                 temp.transform.parent = null;
                 skillTimer = 0f;
@@ -92,6 +101,7 @@ public class PlayerAttackSystem : MonoBehaviour
             _input.ultimate = false;
             if (GameManager.Instance.Energy >= UCost + GameManager.Instance.minusUltimateCost && UTimer > UCoolTime)
             {
+                audioSource.PlayOneShot(USound);
                 GameObject temp = Instantiate(U, spawnPos.transform.position, U.transform.rotation);
                 temp.transform.parent = null;
                 UTimer = 0f;

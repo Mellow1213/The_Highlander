@@ -828,6 +828,7 @@ MonoBehaviour:
     type: 3}
   FireRate: 0.8
   muzzle: {fileID: 1620362041579665014}
+  b: {fileID: 8300000, guid: 45e5a2d015897d34780787ab6e691387, type: 3}
 --- !u!1 &1620362041704270347
 GameObject:
   m_ObjectHideFlags: 0
