@@ -37,14 +37,22 @@ public class Shop : MonoBehaviour
 
     public void ShowUI()
     {
+        Cursor.visible = true;
+        _input.cursorInputForLook = false;
+        _input.cursorLocked = false;
         isShowing = true;
         uiGroup.DOAnchorPos(Vector3.zero, 1f).SetEase(Ease.OutCubic);// = Vector3.zero;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void HideUI()
     {
+        Cursor.visible = false;
+        _input.cursorInputForLook = true;
+        _input.cursorLocked = true;
         isShowing = false;
-        uiGroup.DOAnchorPos(Vector3.down * 1000, 1f).SetEase(Ease.OutCubic); 
+        uiGroup.DOAnchorPos(Vector3.down * 1000, 1f).SetEase(Ease.OutCubic);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnTriggerStay(Collider other)
@@ -71,6 +79,9 @@ public class Shop : MonoBehaviour
     }
     public void PlusHealth()
     {
+        GameManager.Instance.gold -= 1000;
+        health.maxHealth += 5;
+        health.health += 5;
     }
 
     public void PlusFireDamage()
@@ -79,6 +90,7 @@ public class Shop : MonoBehaviour
     }
     public void PlusSwordDamage()
     {
-
+        GameManager.Instance.gold -= 1500;
+        GameManager.Instance.plusSwordDamage += 1;
     }
 }

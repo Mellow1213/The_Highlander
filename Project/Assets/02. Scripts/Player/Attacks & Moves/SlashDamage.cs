@@ -23,7 +23,7 @@ public class SlashDamage : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyHit>().Damaged(slashDamage);
+            other.GetComponent<EnemyHit>().Damaged(slashDamage + GameManager.Instance.plusSwordDamage);
         }
         else
         {
