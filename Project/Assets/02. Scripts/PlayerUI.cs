@@ -27,7 +27,7 @@ public class PlayerUI : MonoBehaviour
         _input = GetComponent<StarterAssetsInputs>();
         _health = GetComponent<Health>();
     }
-
+    bool on = false;
     private void Update()
     {
         if (_input.status)
@@ -41,7 +41,7 @@ public class PlayerUI : MonoBehaviour
             status.DOAnchorPos(statusHide, 1f).SetEase(Ease.OutCubic);
         }
 
-        if (_input.status)
+        if (on)
         {
             toolTip.DOAnchorPos(toolTipShow, 1f).SetEase(Ease.OutCubic);
             toolTipText.text = tooltip;
@@ -54,6 +54,11 @@ public class PlayerUI : MonoBehaviour
 
     public void setToolTipText (string txt)
     {
+        on = true;
         tooltip = txt;
+    }
+    public void setOff()
+    {
+        on = false;
     }
 }

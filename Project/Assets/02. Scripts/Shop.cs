@@ -92,18 +92,18 @@ public class Shop : MonoBehaviour
 
     public void PlusFireDamage()
     {
-        if (GameManager.Instance.gold >= 1200)
+        if (GameManager.Instance.gold >= 1500)
         {
-            GameManager.Instance.gold -= 1200;
+            GameManager.Instance.gold -= 1500;
             GameManager.Instance.plusFireDamage += 0.5f;
         }
     }
     public void MinusFireDelay()
     {
-        if (GameManager.Instance.gold >= 2000)
+        if (GameManager.Instance.gold >= 3000)
         {
-            GameManager.Instance.gold -= 2000;
-            GameManager.Instance.minusFireRate = GameManager.Instance.minusFireRate * 0.9f;
+            GameManager.Instance.gold -= 3000;
+            GameManager.Instance.minusFireRate = GameManager.Instance.minusFireRate * 0.96f;
         }
     }
     public void PlusSwordDamage()
@@ -162,9 +162,9 @@ public class Shop : MonoBehaviour
 
     public void UltimateCost()
     {
-        if(GameManager.Instance.gold >= 4500)
+        if(GameManager.Instance.gold >= 6500)
         {
-            GameManager.Instance.gold -= 4500;
+            GameManager.Instance.gold -= 6500;
             GameManager.Instance.minusUltimateCost -= 3f;
         }
     }
