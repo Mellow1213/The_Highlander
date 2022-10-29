@@ -103,7 +103,7 @@ public class Shop : MonoBehaviour
         if (GameManager.Instance.gold >= 2000)
         {
             GameManager.Instance.gold -= 2000;
-            GameManager.Instance.minusFireRate *= 0.9f;
+            GameManager.Instance.minusFireRate = GameManager.Instance.minusFireRate * 0.9f;
         }
     }
     public void PlusSwordDamage()
