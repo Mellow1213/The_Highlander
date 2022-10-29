@@ -1118,9 +1118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954dae35be56d544b7eee4319a1c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
+  HP: 40
   CurrentHP: 0
-  gold: 3
+  gold: 300
   death: 0
 --- !u!114 &2824789213056251266
 MonoBehaviour:

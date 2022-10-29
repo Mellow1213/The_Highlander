@@ -1333,9 +1333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954dae35be56d544b7eee4319a1c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  HP: 50
   CurrentHP: 0
-  gold: 5
+  gold: 1000
   death: 0
 --- !u!114 &1950969323821428226
 MonoBehaviour:

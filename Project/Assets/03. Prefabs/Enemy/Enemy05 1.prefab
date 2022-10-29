@@ -777,9 +777,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954dae35be56d544b7eee4319a1c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
+  HP: 15
   CurrentHP: 0
-  gold: 0
+  gold: 50
   death: 0
 --- !u!195 &1620362041692586737
 NavMeshAgent:

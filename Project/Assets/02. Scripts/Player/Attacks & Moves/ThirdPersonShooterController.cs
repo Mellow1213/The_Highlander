@@ -104,7 +104,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.DodgeAllowed = true;
         }
 
-        if (_starterAssetsInputs.attack && doAim && fireTimer >= fireDelay)
+        if (_starterAssetsInputs.attack && doAim && fireTimer >= fireDelay * GameManager.Instance.minusFireRate)
         {
             StartCoroutine(CreateShotLine());
             if (hitTransform != null)
@@ -112,17 +112,18 @@ public class ThirdPersonShooterController : MonoBehaviour
                 Instantiate(bulletPrefab, raycastHit.point, Quaternion.identity);
                 if (hitTransform.CompareTag("Enemy"))
                 {
-                    hitTransform.GetComponent<EnemyHit>().Damaged(1.5f);
+                    hitTransform.GetComponent<EnemyHit>().Damaged(damage + GameManager.Instance.plusFireDamage);
                 }
                 else
                     Debug.Log("¹Ù´Ú ¸íÁß!");
             }
         }
-        if (fireTimer < fireDelay)
+        if (fireTimer < fireDelay * GameManager.Instance.minusFireRate)
             fireTimer += Time.deltaTime;
     }
     public Vector3 chestOffset;
     public GameObject firepos;
+    public float damage = 1f;
 
     private void LateUpdate()
     {

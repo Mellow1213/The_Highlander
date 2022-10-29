@@ -74,23 +74,98 @@ public class Shop : MonoBehaviour
 
     public void Heal()
     {
-        GameManager.Instance.gold -= 100;
-        health.health += 5f;
+        if (GameManager.Instance.gold >= 100)
+        {
+            GameManager.Instance.gold -= 100;
+            health.health += 5f;
+        }
     }
     public void PlusHealth()
     {
-        GameManager.Instance.gold -= 1000;
-        health.maxHealth += 5;
-        health.health += 5;
+        if (GameManager.Instance.gold >= 1000)
+        {
+            GameManager.Instance.gold -= 1000;
+            health.maxHealth += 5;
+            health.health += 5;
+        }
     }
 
     public void PlusFireDamage()
     {
-
+        if (GameManager.Instance.gold >= 1200)
+        {
+            GameManager.Instance.gold -= 1200;
+            GameManager.Instance.plusFireDamage += 0.5f;
+        }
+    }
+    public void MinusFireDelay()
+    {
+        if (GameManager.Instance.gold >= 2000)
+        {
+            GameManager.Instance.gold -= 2000;
+            GameManager.Instance.minusFireRate *= 0.9f;
+        }
     }
     public void PlusSwordDamage()
     {
-        GameManager.Instance.gold -= 1500;
-        GameManager.Instance.plusSwordDamage += 1;
+        if (GameManager.Instance.gold >= 1500)
+        {
+            GameManager.Instance.gold -= 1500;
+            GameManager.Instance.plusSwordDamage += 1;
+        }
+    }
+    public void PlusRunSpeed()
+    {
+        if (GameManager.Instance.gold >= 3000)
+        {
+            GameManager.Instance.gold -= 3000;
+            GameManager.Instance.speed += 0.5f;
+        }
+    }
+
+    public void MinusDodgeCoolTime()
+    {
+        if (GameManager.Instance.gold >= 4000)
+        {
+            GameManager.Instance.gold -= 4000;
+            GameManager.Instance.minusDodgeCoolTime += 0.1f;
+        }
+    }
+
+    public void BarrierAmount()
+    {
+        if (GameManager.Instance.gold >= 1000)
+        {
+            GameManager.Instance.gold -= 1000;
+            GameManager.Instance.barrierAmount += 1;
+        }
+    }
+
+    public void BarrierTime()
+    {
+        if (GameManager.Instance.gold >= 1500)
+        {
+            GameManager.Instance.gold -= 1500;
+            GameManager.Instance.plusBarrierTime += 0.5f;
+        }
+    }
+
+    public void SkillCost()
+    {
+        if (GameManager.Instance.gold >= 3000)
+        {
+            GameManager.Instance.gold -= 3000;
+            GameManager.Instance.minusSkillCost -= 5f;
+        }
+
+    }
+
+    public void UltimateCost()
+    {
+        if(GameManager.Instance.gold >= 4500)
+        {
+            GameManager.Instance.gold -= 4500;
+            GameManager.Instance.minusUltimateCost -= 3f;
+        }
     }
 }

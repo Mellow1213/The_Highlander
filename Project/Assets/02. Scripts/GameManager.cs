@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        if(instance == null)
+        if(null == instance )
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (instance == null)
+            if (null == instance)
                 return null;
             return instance;
         }
@@ -34,14 +34,16 @@ public class GameManager : MonoBehaviour
 
     public float plusSwordDamage = 0f;
     public float plusFireDamage = 0f;
-    public float minusFireRate = 0f;
+    public float minusFireRate;
     public float plusHealth = 0f;
+
+
     public float speed = 0f;
-
-
-    public float barrierAmount = 0f;
-    public float plusBarrierHealth = 0f;
-    public float minusBarrierCost = 0f;
-    public float minusUltimateCost = 0f;
     public float minusDodgeCoolTime = 0f;
+
+    public int barrierAmount = 0;
+    public float plusBarrierTime = 0f;
+    public float minusBarrierCost = 0f;
+    public float minusSkillCost = 0f;
+    public float minusUltimateCost = 0f;
 }

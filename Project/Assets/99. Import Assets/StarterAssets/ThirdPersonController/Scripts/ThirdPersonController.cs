@@ -233,11 +233,11 @@ namespace StarterAssets
         }
 
         public float dodgeCoolTime;
-        float dodgeTimer = 0f;
+        float dodgeTimer = 4f;
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            float targetSpeed = _input.sprint ? SprintSpeed+GameManager.Instance.speed : MoveSpeed;
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -245,7 +245,7 @@ namespace StarterAssets
             // if there is no input, set the target speed to 0
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            if (_input.dodge && !_isDodging && DodgeAllowed && !_thirdPersonShooterController.doAim && dodgeTimer > dodgeCoolTime)
+            if (_input.dodge && !_isDodging && DodgeAllowed && !_thirdPersonShooterController.doAim && dodgeTimer > dodgeCoolTime - GameManager.Instance.minusDodgeCoolTime)
             {
                 _animator.SetBool("isDodging", true);
                 _isDodging = true;
@@ -274,7 +274,7 @@ namespace StarterAssets
                 else
                 {
                     dodgeTimer = 0f;
-                    targetSpeed = DodgeSpeed;
+                    targetSpeed = DodgeSpeed + GameManager.Instance.speed*0.3f;
                 }
             }
             else

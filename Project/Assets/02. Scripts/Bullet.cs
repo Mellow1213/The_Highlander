@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
             }
         }
-        else
+        else if(!other.CompareTag("Enemy"))
         {
             Destroy(gameObject);
             Instantiate(hitEffect, transform.position, Quaternion.identity);
