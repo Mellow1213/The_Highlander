@@ -11,12 +11,15 @@ public class Enemy01_Attack : MonoBehaviour
     GameObject target;
     public GameObject bullet;
     public Transform muzzlePos;
+    public AudioClip fireSound;
+    AudioSource audioSource;
     
     public float fireRate = 0.8f;
     float fireTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player");
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -37,6 +40,7 @@ public class Enemy01_Attack : MonoBehaviour
                 {
                     fireTimer = 0f;
                     Instantiate(bullet, muzzlePos.position, Quaternion.identity);
+                    audioSource.PlayOneShot(fireSound);
                 }
             }
             else

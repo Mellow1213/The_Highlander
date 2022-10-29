@@ -69,6 +69,10 @@ public class EnemyWaveSystem : MonoBehaviour
     }
     private void Update()
     {
+        if(waveLevel >= 15)
+        {
+            GameManager.Instance.GameEnd();
+        }
         if(Vector3.Distance(player.transform.position, startPos.transform.position) < 5f)
         {
             Debug.Log("웨이브 시작 가능!!");

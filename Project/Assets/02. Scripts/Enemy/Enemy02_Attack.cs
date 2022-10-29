@@ -15,6 +15,9 @@ public class Enemy02_Attack : MonoBehaviour
 
     EnemyHit enemyHit;
 
+    AudioSource audioSource;
+    public AudioClip attackSound;
+
     public float damage = 1f;
 
     bool isAttacking = false;
@@ -23,6 +26,7 @@ public class Enemy02_Attack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player");
         _health = target.GetComponent<Health>();
         _animator = GetComponent<Animator>();
@@ -32,6 +36,7 @@ public class Enemy02_Attack : MonoBehaviour
 
     public void AttackVFX()
     {
+        audioSource.PlayOneShot(attackSound);
         _health.Damaged(damage);
         attackVFX.SetActive(false);
         attackVFX.SetActive(true);

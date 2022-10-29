@@ -1335,8 +1335,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 50
   CurrentHP: 0
-  gold: 1000
+  gold: 8000
   death: 0
+  energy: {fileID: 5749892945899594870, guid: ae4880b99a4c69a4aa5c8cd16a801f85, type: 3}
+  deathEffect: {fileID: 3940036432451144812, guid: e7195681d4821c847a757d5174cae6ab,
+    type: 3}
 --- !u!114 &1950969323821428226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1349,7 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b3c659c21e529448fd6036f1139a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 5749892945899594867, guid: ae4880b99a4c69a4aa5c8cd16a801f85, type: 3}
 --- !u!195 &1950969323821428225
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class Shop : MonoBehaviour
 
     public void Heal()
     {
-        if (GameManager.Instance.gold >= 100)
+        if (GameManager.Instance.gold >= 400)
         {
             GameManager.Instance.gold -= 100;
             health.health += 5f;
@@ -116,27 +116,27 @@ public class Shop : MonoBehaviour
     }
     public void PlusRunSpeed()
     {
-        if (GameManager.Instance.gold >= 3000)
+        if (GameManager.Instance.gold >= 1000)
         {
-            GameManager.Instance.gold -= 3000;
+            GameManager.Instance.gold -= 1000;
             GameManager.Instance.speed += 0.5f;
         }
     }
 
     public void MinusDodgeCoolTime()
     {
-        if (GameManager.Instance.gold >= 4000)
+        if (GameManager.Instance.gold >= 2000)
         {
-            GameManager.Instance.gold -= 4000;
+            GameManager.Instance.gold -= 2000;
             GameManager.Instance.minusDodgeCoolTime += 0.1f;
         }
     }
 
     public void BarrierAmount()
     {
-        if (GameManager.Instance.gold >= 1000)
+        if (GameManager.Instance.gold >= 800)
         {
-            GameManager.Instance.gold -= 1000;
+            GameManager.Instance.gold -= 800;
             GameManager.Instance.barrierAmount += 1;
         }
     }
@@ -152,7 +152,7 @@ public class Shop : MonoBehaviour
 
     public void SkillCost()
     {
-        if (GameManager.Instance.gold >= 3000)
+        if (GameManager.Instance.gold >= 5000)
         {
             GameManager.Instance.gold -= 3000;
             GameManager.Instance.minusSkillCost -= 5f;

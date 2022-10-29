@@ -12,6 +12,8 @@ public class EnemyHit : MonoBehaviour
     NavMeshAgent _navMeshAgent;
     BoxCollider _bocCollider;
     public bool death = false;
+    public GameObject energy;
+    public GameObject deathEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,8 @@ public class EnemyHit : MonoBehaviour
             //»ç¸Á ¸ð¼Ç
             if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.1 && _animator.GetCurrentAnimatorStateInfo(0).IsTag("Death"))
             {
+                Instantiate(deathEffect, transform.position, transform.rotation);
+                Instantiate(energy, transform.position, transform.rotation);
                 Destroy(gameObject);
                 GameManager.Instance.gold += gold;
             }

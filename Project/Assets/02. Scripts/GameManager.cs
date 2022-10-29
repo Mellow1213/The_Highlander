@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
@@ -48,4 +48,9 @@ public class GameManager : MonoBehaviour
     public float minusUltimateCost = 0f;
 
     public float Energy = 0f;
+
+    public void GameEnd()
+    {
+
+    }
 }
