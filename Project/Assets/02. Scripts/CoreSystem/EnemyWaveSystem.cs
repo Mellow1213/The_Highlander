@@ -69,11 +69,15 @@ public class EnemyWaveSystem : MonoBehaviour
         _input = GameObject.Find("PlayerArmature").GetComponent<StarterAssetsInputs>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
+    float timer = 0f;
     private void Update()
     {
         if(waveLevel >= 15)
         {
-            GameManager.Instance.GameEnd();
+            timer += Time.deltaTime;
+            txt.SetActive(true);
+            if(timer > 4f)
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         if(Vector3.Distance(player.transform.position, startPos.transform.position) < 5f)
         {

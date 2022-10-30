@@ -25,12 +25,18 @@ public class Health : MonoBehaviour
         Death();
     }
 
+    float timer = 0f;
+    public GameObject txt;
     void Death()
     {
         if (health <= 0 && !isDeath)
         {
             isDeath = true;
             _animator.SetTrigger("Death");
+            timer += Time.deltaTime;
+            txt.SetActive(true);
+            if (timer > 4f)
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }   
 

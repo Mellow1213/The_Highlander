@@ -49,8 +49,4 @@ public class GameManager : MonoBehaviour
 
     public float Energy = 0f;
 
-    public void GameEnd()
-    {
-
-    }
 }

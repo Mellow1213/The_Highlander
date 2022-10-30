@@ -12,10 +12,12 @@ public class Guide : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        a.setToolTipText(text);        
+        if (other.CompareTag("Player"))
+            a.setToolTipText(text);        
     }
     private void OnTriggerExit(Collider other)
     {
-        a.setOff();
+        if (other.CompareTag("Player"))
+            a.setOff();
     }
 }

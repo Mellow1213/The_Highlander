@@ -76,7 +76,7 @@ public class Enemy02_Attack : MonoBehaviour
                 }
                 else
                 {
-                    _navMeshAgent.speed = 7;
+                    _navMeshAgent.speed = 4;
                     _animator.SetBool("Attack", false);
                 }
             }
